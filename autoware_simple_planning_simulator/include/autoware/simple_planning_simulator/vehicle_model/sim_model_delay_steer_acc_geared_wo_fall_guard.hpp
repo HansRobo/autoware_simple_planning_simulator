@@ -45,7 +45,7 @@ public:
    * @param [in] steer_bias steering bias [rad]
    * @param [in] debug_acc_scaling_factor scaling factor for accel command
    * @param [in] debug_steer_scaling_factor scaling factor for steering command
-   * @param [in] k_us understeer coefficient [rad/(m/s²)]; 0 keeps the ideal bicycle model
+   * @param [in] k_us understeer gradient [s^2/m]; 0 keeps the ideal bicycle model
    */
   SimModelDelaySteerAccGearedWoFallGuard(
     double vx_lim, double steer_lim, double vx_rate_lim, double steer_rate_lim, double wheelbase,
@@ -88,7 +88,7 @@ private:
   const double steer_bias_;                  //!< @brief steering angle bias [rad]
   const double debug_acc_scaling_factor_;    //!< @brief scaling factor for accel command
   const double debug_steer_scaling_factor_;  //!< @brief scaling factor for steering command
-  const double k_us_;                        //!< @brief understeer coefficient [rad/(m/s²)]
+  const double k_us_;                        //!< @brief understeer gradient [s^2/m]
 
   /**
    * @brief steady-state yaw rate including understeer:
