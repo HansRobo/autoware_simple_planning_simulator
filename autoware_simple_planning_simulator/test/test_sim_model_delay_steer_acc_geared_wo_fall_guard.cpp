@@ -24,13 +24,27 @@ namespace autoware::simulator::simple_planning_simulator
 {
 namespace
 {
-constexpr double dt = 0.025;
+constexpr double vx_lim = 50.0;
+constexpr double steer_lim = 0.6;
+constexpr double vx_rate_lim = 7.0;
+constexpr double steer_rate_lim = 5.0;
 constexpr double wheelbase = 2.79;
+constexpr double dt = 0.025;
+constexpr double acc_delay = 0.1;
+constexpr double acc_time_constant = 0.1;
+constexpr double steer_delay = 0.1;
+constexpr double steer_time_constant = 0.1;
+constexpr double steer_dead_band = 0.0;
+constexpr double steer_bias = 0.0;
+constexpr double debug_acc_scaling_factor = 1.0;
+constexpr double debug_steer_scaling_factor = 1.0;
 
 SimModelDelaySteerAccGearedWoFallGuard make_model(const double k_us)
 {
   return SimModelDelaySteerAccGearedWoFallGuard(
-    50.0, 0.6, 7.0, 5.0, wheelbase, dt, 0.1, 0.1, 0.1, 0.1, 0.0, 0.0, 1.0, 1.0, k_us);
+    vx_lim, steer_lim, vx_rate_lim, steer_rate_lim, wheelbase, dt, acc_delay, acc_time_constant,
+    steer_delay, steer_time_constant, steer_dead_band, steer_bias, debug_acc_scaling_factor,
+    debug_steer_scaling_factor, k_us);
 }
 
 // Hold a constant speed and steering angle, and return the yaw rate.
